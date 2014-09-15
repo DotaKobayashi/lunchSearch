@@ -7,6 +7,7 @@
 //
 
 #import "ShopTableViewController.h"
+#import "WebViewViewController.h"
 
 @implementation ShopTableViewController
 
@@ -18,7 +19,6 @@ NSTimer *myTimer;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     // デリゲートメソッドをこのクラスで実装する
     self.tableView.delegate = self;
@@ -28,29 +28,40 @@ NSTimer *myTimer;
     UINib *nib = [UINib nibWithNibName:@"TableViewCustomCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    
+}
+
+/*
+ *  cellの背景色を透明にする
+ */
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 
-/*
-    myTimer =
-    [NSTimer scheduledTimerWithTimeInterval:0.1f //タイマーを発生させる間隔
-                                     target:self //タイマー発生時に呼び出すメソッドがあるターゲット
-                                   selector:@selector(timerCall:) //タイマー発生時に呼び出すメソッド
-                                   userInfo:nil //selectorに渡す情報(NSDictionary)
-                                    repeats:YES //リピート
-     ];
-    
-    UIAlertView *firstAlert = [[UIAlertView alloc] initWithTitle:@"AlertView"
-                                                         message:@"とめる"
-                                                        delegate:self
-                                               cancelButtonTitle:nil
-                                               otherButtonTitles:@"stop", nil];
-    firstAlert.tag = firstAlertTag;
-    [firstAlert show];
-*/
+    if (_rouletteStart)
+    {
+        myTimer =
+        [NSTimer scheduledTimerWithTimeInterval:0.1f //タイマーを発生させる間隔
+                                         target:self //タイマー発生時に呼び出すメソッドがあるターゲット
+                                       selector:@selector(timerCall:) //タイマー発生時に呼び出すメソッド
+                                       userInfo:nil //selectorに渡す情報(NSDictionary)
+                                        repeats:YES //リピート
+         ];
+        
+        UIAlertView *firstAlert = [[UIAlertView alloc] initWithTitle:@"ルーレット開始"
+                                                             message:@""
+                                                            delegate:self
+                                                   cancelButtonTitle:nil
+                                                   otherButtonTitles:@"とめる", nil];
+        firstAlert.tag = firstAlertTag;
+        [firstAlert show];
+    }
+
 }
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -66,6 +77,7 @@ NSTimer *myTimer;
 
 - (void)otherButtonPushed
 {
+    _rouletteStart = false;
     [myTimer invalidate];
     
     // 余韻を持たす
@@ -75,8 +87,21 @@ NSTimer *myTimer;
     
     // 止まる位置の店を取得 現在のスクロール位置をセルの高さで割って対象のセルを取得する
     NSInteger idx = self.tableView.contentOffset.y / 80;
-    NSString *name = self.dataShopList[idx];
     
+    NSDictionary* shopItem = self.dataShopList[idx];
+    NSString *shopURL = [NSString stringWithFormat:@"%@", [shopItem objectForKey:@"url"]];
+    NSRange range = [shopURL rangeOfString:@"http"];
+    if (range.location == NSNotFound)
+        return;
+    
+    WebViewViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
+    vc.shopURL = shopURL;
+    [self presentViewController:vc animated:YES completion:nil];
+
+/*
+    NSDictionary* shopItem = self.dataShopList[idx];
+    NSString *name = [self getShopName:shopItem];
+
     UIAlertView *secondAlert = [[UIAlertView alloc] initWithTitle:@"AlertView"
                                                           message:name
                                                          delegate:self
@@ -84,7 +109,7 @@ NSTimer *myTimer;
                                                 otherButtonTitles:nil, nil];
     secondAlert.tag = secondAlertTag;
     [secondAlert show];
-    
+*/
 }
 
 -(void)timerCall:(NSTimer*)timer
@@ -128,10 +153,18 @@ NSTimer *myTimer;
     NSDictionary* shopItem = self.dataShopList[indexPath.row];
     NSLog(@"index:%d", indexPath.row);
     
-    
-//    cell.shopImage.image = [self getShopImg:shopItem];
     cell.shopName.text = [self getShopName:shopItem];
     cell.shopURL = [shopItem objectForKey:@"url"];
+
+    // Set backgroundView
+    UIImageView *imageView;
+    UIImage *image;
+    int num = indexPath.row % 10;
+    NSMutableString *imgName = [NSMutableString stringWithString:@"list"];
+    [imgName appendFormat:@"%d", num];
+    image = [UIImage imageNamed:imgName];
+    imageView = [[UIImageView alloc] initWithImage:image];
+    cell.backgroundView = imageView;
     
     return cell;
 }
@@ -153,7 +186,7 @@ NSTimer *myTimer;
     NSLog(@"%@", shopName);
     return shopName;
 }
-
+/*
 - (UIImage *)getShopImg:(NSDictionary*)shopItem
 {
     // NSString型だと認識させる
@@ -171,7 +204,7 @@ NSTimer *myTimer;
         return [[UIImage alloc] initWithData:dt];
     }
 }
-
+*/
 #pragma mark - UITableViewDelegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -187,7 +220,12 @@ NSTimer *myTimer;
     NSRange range = [shopURL rangeOfString:@"http"];
     if (range.location == NSNotFound)
         return;
-        
+
+    WebViewViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"webView"];
+    vc.shopURL = shopURL;
+    [self presentViewController:vc animated:YES completion:nil];
+    
+/*
     // UIWebViewのインスタンス化
     CGRect rect = self.view.frame;
     UIWebView *webView = [[UIWebView alloc]initWithFrame:rect];
@@ -207,7 +245,10 @@ NSTimer *myTimer;
     
     // UIWebViewのインスタンスをビューに追加
     [self.view addSubview:webView];
-    
+*/
 }
 
+- (IBAction)goBackbtn:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end

@@ -18,6 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // 背景画像設定
+    UIImage *backgroundImage  = [UIImage imageNamed:@"back.jpg"];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
 
     // ロケーションマネージャの初期化
     self.locationManager.delegate = nil;
@@ -77,8 +81,8 @@
      {
          
          NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-         NSArray* shopList = [jsonDictionary objectForKey:@"rest"];
-         if (shopList == nil)
+         NSArray* tempList = [jsonDictionary objectForKey:@"rest"];
+         if (tempList == nil)
          {
              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                              message:@"HITしたお店が0件です"
@@ -88,8 +92,26 @@
              [alert show];
              return;
          }
+         
+         NSArray *shopList = [NSArray array];
+         
+         // 10件以下の場合、店の数を増やす
+         if (tempList.count < 10)
+         {
+             NSArray *temp = [shopList arrayByAddingObjectsFromArray:shopList];
+             NSMutableArray *result = [NSMutableArray arrayWithArray:temp];
+             while (result.count < 10) {
+                 result = [NSMutableArray arrayWithArray:temp];
+             }
+             shopList = result;
+         } else {
+             shopList = tempList;
+         }
+         
+         
          ShopTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ShopList"];
          vc.dataShopList = shopList;
+         vc.rouletteStart = true;
          [self presentViewController:vc animated:YES completion:nil];
      }];
 }

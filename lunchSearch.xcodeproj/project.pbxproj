@@ -26,6 +26,9 @@
 		2B0C4643199FA8AE00E2776B /* TableViewCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B0C4642199FA8AE00E2776B /* TableViewCustomCell.xib */; };
 		2B0C4646199FAA8D00E2776B /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C4645199FAA8D00E2776B /* CustomTableViewCell.m */; };
 		2B0C4649199FADF100E2776B /* ShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C4648199FADF100E2776B /* ShopTableViewController.m */; };
+		2B95E63D19C6A72E008B57AF /* back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B95E63C19C6A72E008B57AF /* back.jpg */; };
+		2BA3853219C6B77300B99836 /* list_back.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2BA3853119C6B77300B99836 /* list_back.jpg */; };
+		2BA3853519C6BCD400B99836 /* WebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3853419C6BCD400B99836 /* WebViewViewController.m */; };
 		2BF38DDB19A06D4E0058E78C /* GNaviApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF38DDA19A06D4E0058E78C /* GNaviApi.m */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,10 @@
 		2B0C4645199FAA8D00E2776B /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		2B0C4647199FADF100E2776B /* ShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTableViewController.h; sourceTree = "<group>"; };
 		2B0C4648199FADF100E2776B /* ShopTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopTableViewController.m; sourceTree = "<group>"; };
+		2B95E63C19C6A72E008B57AF /* back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpg; sourceTree = "<group>"; };
+		2BA3853119C6B77300B99836 /* list_back.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = list_back.jpg; sourceTree = "<group>"; };
+		2BA3853319C6BCD400B99836 /* WebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewViewController.h; sourceTree = "<group>"; };
+		2BA3853419C6BCD400B99836 /* WebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewViewController.m; sourceTree = "<group>"; };
 		2BF38DD919A06D4E0058E78C /* GNaviApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNaviApi.h; sourceTree = "<group>"; };
 		2BF38DDA19A06D4E0058E78C /* GNaviApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNaviApi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,6 +136,8 @@
 		2B0C4608199F51FD00E2776B /* lunchSearch */ = {
 			isa = PBXGroup;
 			children = (
+				2BA3853119C6B77300B99836 /* list_back.jpg */,
+				2B95E63C19C6A72E008B57AF /* back.jpg */,
 				2B0C463A199FA6BA00E2776B /* TableView */,
 				2B0C4641199FA7A200E2776B /* TableViewCell */,
 				2B0C4611199F51FD00E2776B /* AppDelegate.h */,
@@ -142,6 +151,8 @@
 				2BF38DDA19A06D4E0058E78C /* GNaviApi.m */,
 				2B0C461D199F51FD00E2776B /* Images.xcassets */,
 				2B0C4609199F51FD00E2776B /* Supporting Files */,
+				2BA3853319C6BCD400B99836 /* WebViewViewController.h */,
+				2BA3853419C6BCD400B99836 /* WebViewViewController.m */,
 			);
 			path = lunchSearch;
 			sourceTree = "<group>";
@@ -276,6 +287,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B0C461E199F51FD00E2776B /* Images.xcassets in Resources */,
+				2B95E63D19C6A72E008B57AF /* back.jpg in Resources */,
+				2BA3853219C6B77300B99836 /* list_back.jpg in Resources */,
 				2B0C4616199F51FD00E2776B /* Main_iPhone.storyboard in Resources */,
 				2B0C4643199FA8AE00E2776B /* TableViewCustomCell.xib in Resources */,
 				2B0C460D199F51FD00E2776B /* InfoPlist.strings in Resources */,
@@ -303,6 +316,7 @@
 				2B0C4640199FA77600E2776B /* ShopTableView.m in Sources */,
 				2BF38DDB19A06D4E0058E78C /* GNaviApi.m in Sources */,
 				2B0C460F199F51FD00E2776B /* main.m in Sources */,
+				2BA3853519C6BCD400B99836 /* WebViewViewController.m in Sources */,
 				2B0C4649199FADF100E2776B /* ShopTableViewController.m in Sources */,
 				2B0C463D199FA6EA00E2776B /* TableViewInterceptor.m in Sources */,
 			);

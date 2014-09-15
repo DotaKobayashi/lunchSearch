@@ -11,8 +11,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ShopTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate>
+- (IBAction)goBackbtn:(id)sender;
 
 @property (weak, nonatomic) IBOutlet ShopTableView *tableView;
 @property (nonatomic, strong) NSArray *dataShopList;
+@property Boolean rouletteStart;
 
 @end

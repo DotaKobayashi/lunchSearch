@@ -13,12 +13,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bFO-sZ-eya">
-                        <rect key="frame" x="8" y="2" width="75" height="75"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqI-ze-wTh">
-                        <rect key="frame" x="91" y="20" width="222" height="39"/>
+                        <rect key="frame" x="36" y="20" width="264" height="39"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -27,7 +23,6 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="shopImage" destination="bFO-sZ-eya" id="uBM-8X-Tp4"/>
                 <outlet property="shopName" destination="HqI-ze-wTh" id="yFp-Ew-pYy"/>
             </connections>
         </tableViewCell>

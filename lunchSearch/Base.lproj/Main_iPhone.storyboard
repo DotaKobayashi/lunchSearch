@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sy7-2s-6mh">
-                                <rect key="frame" x="137" y="269" width="46" height="30"/>
+                                <rect key="frame" x="48" y="172" width="224" height="224"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
-                                <state key="normal" title="検索"/>
+                                <state key="normal" title="検索する" backgroundImage="btn"/>
                                 <connections>
                                     <action selector="btnSearch:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="D8k-R6-7ud"/>
                                 </connections>
@@ -28,10 +28,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="2N1-8h-eV6"/>
+                    <connections>
+                        <segue destination="edg-Wv-IC4" kind="push" id="BcI-aw-uB9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="109" y="10"/>
+            <point key="canvasLocation" x="635" y="10"/>
         </scene>
         <!--Shop Table View Controller-->
         <scene sceneID="M2L-im-9nk">
@@ -53,15 +57,66 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dJp-Yl-fPR">
+                        <barButtonItem key="leftBarButtonItem" title="戻る" id="jH1-Te-2Eh">
+                            <connections>
+                                <action selector="goBackbtn:" destination="edg-Wv-IC4" id="sHz-zE-fpA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Ov7-JA-X7C" id="F3N-Cd-qJ7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6p-Jy-Bt3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="488" y="10"/>
+            <point key="canvasLocation" x="1014" y="10"/>
+        </scene>
+        <!--Web View View Controller-->
+        <scene sceneID="Etx-Gl-Vj3">
+            <objects>
+                <viewController storyboardIdentifier="webView" id="5TP-Xa-SoG" customClass="WebViewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ygA-dl-Ybx"/>
+                        <viewControllerLayoutGuide type="bottom" id="RA8-Cr-gHA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EcL-s4-Buk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b21-Rk-eT2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cyr-jW-gLA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="d0a-MJ-nf7">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="1FO-tB-9YR">
+                                            <connections>
+                                                <action selector="backBtn:" destination="5TP-Xa-SoG" id="l1K-p3-hbt"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="myWebView" destination="b21-Rk-eT2" id="lL2-L5-6iW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ml3-WK-ibv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1359" y="10"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn" width="3840" height="3556"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

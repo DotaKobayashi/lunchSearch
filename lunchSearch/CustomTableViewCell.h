@@ -10,7 +10,6 @@
 
 @interface CustomTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *shopImage;
 @property (weak, nonatomic) IBOutlet UILabel *shopName;
 @property NSString* shopURL;
 
